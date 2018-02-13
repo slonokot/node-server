@@ -17,13 +17,13 @@ hbs.registerHelper('getCurrentYear', () => {
 });
 
 //  using midleware
-app.use((req, res, next) => {
-    res.render('maintenance.hbs', {
-        pageTitle: 'Maintenance!',
-        maintenanceMessage: 'We are on maintenance, will be back soon!'
-    });
-
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs', {
+//         pageTitle: 'Maintenance!',
+//         maintenanceMessage: 'We are on maintenance, will be back soon!'
+//     });
+//
+// });
 // If we want put every request to the server to go through to some function and stop there
 // We can add midleware function without next(), that will render the response.
 // For that reason every other midleware used as the express.static() bellow should
@@ -44,13 +44,6 @@ app.use((req, res, next) => {
 });
 //
 
-app.get('/maintenance.html', (req, res) => {
-    res.render('maintenance.hbs', {
-        pageTitle: 'Maintenance!',
-        maintenanceMessage: 'We are on maintenance, will be back soon!'
-    });
-});
-
 
 hbs.registerHelper('screamIt', (text) => {
     return text.toUpperCase();
@@ -69,6 +62,15 @@ app.get('/about', (req, res) => {
         pageTitle: 'About Page!',
     });
 });
+
+
+app.get('/projects', (req, res) => {
+    res.render('projects.hbs', {
+        pageTitle: 'Projects portfolio',
+        projectsMessage: 'List of projects',
+    });
+});
+
 
 app.get('/bad', (req, res) => {
     res.send({
